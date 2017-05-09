@@ -4,11 +4,12 @@ conn = sqlite3.connect('test.db')
 
 c = conn.cursor()
 
-with open('start.sql','r') as f:
-	sql = f.read()
+query = '''
+select * from cities
+'''
 
-for query in sql.split('-- ###'):
-	c.execute(query)
+for x in c.execute(query):
+	print(x)
 
 conn.commit()
 c.close()
